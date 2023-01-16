@@ -1,0 +1,67 @@
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
+  padding-left: 0.5rem;
+}
+
+html,
+body {
+  height: 100%;
+}
+.center-align {
+  margin: 0 auto;
+  height: 88%;
+  max-width: 1504px;
+  gap: 4rem;
+}
+
+form {
+  padding-top: 10px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.card-title {
+  font-weight: 300;
+}
+
+.btn {
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.login-form {
+  width: 330px;
+  margin: 20px;
+}
+
+.sign-up {
+  text-align: center;
+  padding: 20px 0 0;
+}
+
+.alert {
+  margin-bottom: -30px;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.loading {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  opacity: 1;
+  background-color: #fff;
+  z-index: 99;
+}
+
+.loading-image {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 100;
+}

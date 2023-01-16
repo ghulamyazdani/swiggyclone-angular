@@ -1,0 +1,242 @@
+.add-container {
+  background-color: #17c3b2;
+  padding: 0.25rem 1rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.add-meals {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  flex-direction: row;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.add-meals li {
+  position: relative;
+  margin: 5px;
+  width: 75px;
+}
+.add-meals li .clear {
+  background-color: transparent;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  opacity: 0;
+}
+.add-meals li:hover .clear {
+  opacity: 1;
+}
+.add-meals li img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.add-meals li span {
+  display: inline-block;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 75px;
+}
+.meal {
+  margin: 1.5rem;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-radius: 3px;
+}
+
+.meal-header {
+  position: relative;
+}
+.meal-header .random {
+  position: absolute;
+  top: 1rem;
+  background-color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid #17c3b2;
+}
+.meal-header img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+.meal-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.meal-body h4 {
+  margin: 0;
+}
+.add-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.active {
+  color: #17c3b2;
+}
+
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.popup {
+  background-color: white;
+  max-width: 500px;
+  width: 100%;
+  padding: 0 2rem;
+  border-radius: 5px;
+  position: relative;
+  overflow: auto;
+  height: 100%;
+}
+.popup h1 {
+  text-align: center;
+}
+.popup .close-popup {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.meals {
+  display: -webkit-inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+#cartCount {
+  font-size: 12px;
+  background: #ff0000;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-top: -10px;
+}
+
+.itemText {
+  color: black;
+}
+
+.modalbody {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.placeorder {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  padding: 0 2rem;
+  color: #000;
+  letter-spacing: 0;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  line-height: 40px;
+  width: auto;
+  background: transparent;
+}
+.placeorder:hover {
+  color: #fc8019;
+}
+.cartItem {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.searchSection {
+  text-align: center;
+  padding: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.searchSection .fa-filter {
+  cursor: pointer;
+}
+.searchForm {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.searchSection #search-term {
+  border: solid #fc8019 1px;
+
+  padding: 1rem;
+  width: 400px;
+}
+.searchSection #search {
+  background-color: #fc8019;
+  border: none;
+  color: white;
+}
+
+.Recentorders {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.Recentorders p {
+  font-size: 1.3rem;
+}
+
+.filterBox {
+  background-color: #fff;
+  left: 65%;
+  margin: 1.5rem;
+  padding: 1rem;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+  border-radius: 3px;
+}
+
+.form-group {
+  display: flex;
+}
