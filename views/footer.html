@@ -39,7 +39,7 @@
           <div style="width: 190px; margin-top: 5px"></div>
           <p class="link_register">
             or
-            <a ng-click="handleSignupOpen()" style="cursor: pointer">
+            <a onclick="handleSignupOpen()" style="cursor: pointer">
               create an account
             </a>
           </p>
@@ -155,7 +155,7 @@
           <div style="width: 190px; margin-top: 5px"></div>
           <p class="link_register">
             or
-            <a ng-click="handleLoginOpen()" style="cursor: pointer">
+            <a onclick="handleLoginOpen()" style="cursor: pointer">
               login to your account
             </a>
           </p>
@@ -168,138 +168,133 @@
             class="food_wrap"
           />
         </div>
-        <div ng-show="!signedupstate">
-          <form
-            name="signupForm"
-            ng-submit="handleSignUp($event)"
-            class="signupForm"
-          >
-            <input
-              type="email"
-              class="Number_input"
-              id="inputEmail4"
-              name="email"
-              ng-model="userData.email"
-              ng-required="true"
-              placeholder="Email"
-              required
-            />
-            <span
-              class="text-danger"
-              ng-show="signupForm.email.$error.required && signupForm.email.$touched || signupForm.email.$error.required && signupForm.email.$dirty"
-              class=""
-            >
-              Email field is required
-            </span>
-            <span
-              class="text-danger"
-              ng-show="signupForm.email.$error.email && signupForm.email.$touched || signupForm.email.$error.email && signupForm.email.$dirty"
-              class=""
-            >
-              Invalid email address</span
-            >
-
-            <input
-              type="string"
-              class="Number_input"
-              id="inputUsername4"
-              name="username"
-              ng-model="userData.username"
-              ng-required="true"
-              placeholder="Username"
-              ng-minlength="3"
-              ng-maxlength="15"
-              required
-            />
-            <span
-              class="text-danger"
-              ng-show="signupForm.username.$error.required && signupForm.username.$touched"
-            >
-              Username is Required</span
-            >
-
-            <span
-              class="text-danger"
-              ng-show="signupForm.username.$error.minlength  && signupForm.username.$touched"
-            >
-              Username is too short</span
-            >
-            <span
-              class="text-danger"
-              ng-show="signupForm.username.$error.maxlength && signupForm.username.$touched"
-            >
-              Username is too big</span
-            >
-            <input
-              type="password"
-              class="Number_input"
-              name="password"
-              id="inputPassword4"
-              ng-model="userData.password"
-              ng-required="true"
-              placeholder="Password"
-              ng-pattern="passwordRegex"
-            />
-            <span
-              class="text-danger"
-              ng-show="signupForm.password.$error.required && signupForm.password.$touched"
-            >
-              Password is Required</span
-            >
-            <span
-              class="text-danger"
-              ng-show="signupForm.password.$error.pattern  && signupForm.password.$touched"
-            >
-              Password should be atleast 8 characters, one uppercase, one
-              lowercase and one number</span
-            >
-            <input
-              type="password"
-              class="Number_input"
-              name="confirmPassword"
-              id="inputConfirmPassword4"
-              ng-model="userData.confirmPassword"
-              ng-required="true"
-              placeholder="Confirm Password"
-              compare-to="userData.password"
-            />
-            <!-- <div
+        <form
+          name="signupForm"
+          ng-submit="handleSignUp($event)"
+          class="signupForm"
+        >
+          <input
+            type="email"
+            class="Number_input"
+            id="inputEmail4"
+            name="email"
+            ng-model="userData.email"
+            ng-required="true"
+            placeholder="Email"
+            required
+          />
+          <span
             class="text-danger"
-            ng-show="signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid || signupForm.confirmPassword.$dirty && userData.confirmPassword != userData.password"
+            ng-show="signupForm.email.$error.required && signupForm.email.$touched || signupForm.email.$error.required && signupForm.email.$dirty"
+            class=""
           >
-            <span ng-show="signupForm.confirmPassword.$error.required"
-              >Re-type password is required</span
-            >
-            <span
-              ng-show="!signupForm.confirmPassword.$error.required && userData.confirmPassword != userData.password"
-              >Password did not match</span
-            >
-          </div> -->
+            Email field is required
+          </span>
+          <span
+            class="text-danger"
+            ng-show="signupForm.email.$error.email && signupForm.email.$touched || signupForm.email.$error.email && signupForm.email.$dirty"
+            class=""
+          >
+            Invalid email address</span
+          >
 
-            <span
-              class="text-danger"
-              ng-show="signupForm.confirmPassword.$error.required && signupForm.confirmPassword.$touched "
-            >
-              Confirm password is Required</span
-            >
-            <span
-              class="text-danger"
-              ng-show=" userData.confirmPassword !== userData.password && signupForm.confirmPassword.$touched"
-            >
-              Confirm password should be same as password</span
-            >
+          <input
+            type="string"
+            class="Number_input"
+            id="inputUsername4"
+            name="username"
+            ng-model="userData.username"
+            ng-required="true"
+            placeholder="Username"
+            ng-minlength="3"
+            ng-maxlength="15"
+            required
+          />
+          <span
+            class="text-danger"
+            ng-show="signupForm.username.$error.required && signupForm.username.$touched"
+          >
+            Username is Required</span
+          >
 
-            <button id="signup" type="submit" class="login_btn">Sign up</button>
-          </form>
-          <div class="foot_text">
-            <p>
-              By clicking on Login, I accept the terms & Conditions & Privacy
-              Policy
-            </p>
-          </div>
-        </div>
-        <div ng-show="signedupstate">
-          <h1>Signup sucessfull</h1>
+          <span
+            class="text-danger"
+            ng-show="signupForm.username.$error.minlength  && signupForm.username.$touched"
+          >
+            Username is too short</span
+          >
+          <span
+            class="text-danger"
+            ng-show="signupForm.username.$error.maxlength && signupForm.username.$touched"
+          >
+            Username is too big</span
+          >
+          <input
+            type="password"
+            class="Number_input"
+            name="password"
+            id="inputPassword4"
+            ng-model="userData.password"
+            ng-required="true"
+            placeholder="Password"
+            ng-pattern="passwordRegex"
+          />
+          <span
+            class="text-danger"
+            ng-show="signupForm.password.$error.required && signupForm.password.$touched"
+          >
+            Password is Required</span
+          >
+          <span
+            class="text-danger"
+            ng-show="signupForm.password.$error.pattern  && signupForm.password.$touched"
+          >
+            Password should be atleast 8 characters, one uppercase, one
+            lowercase and one number</span
+          >
+          <input
+            type="password"
+            class="Number_input"
+            name="confirmPassword"
+            id="inputConfirmPassword4"
+            ng-model="userData.confirmPassword"
+            ng-required="true"
+            placeholder="Confirm Password"
+            compare-to="userData.password"
+          />
+          <!-- <div
+              class="text-danger"
+              ng-show="signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid || signupForm.confirmPassword.$dirty && userData.confirmPassword != userData.password"
+            >
+              <span ng-show="signupForm.confirmPassword.$error.required"
+                >Re-type password is required</span
+              >
+              <span
+                ng-show="!signupForm.confirmPassword.$error.required && userData.confirmPassword != userData.password"
+                >Password did not match</span
+              >
+            </div> -->
+
+          <span
+            class="text-danger"
+            ng-show="signupForm.confirmPassword.$error.required && signupForm.confirmPassword.$touched "
+          >
+            Confirm password is Required</span
+          >
+          <span
+            class="text-danger"
+            ng-show=" userData.confirmPassword !== userData.password && signupForm.confirmPassword.$touched"
+          >
+            Confirm password should be same as password</span
+          >
+
+          <button id="signup" type="submit" class="login_btn">Sign up</button>
+        </form>
+        <div class="foot_text">
+          <p>
+            By clicking on Login, I accept the terms & Conditions & Privacy
+            Policy
+          </p>
         </div>
       </div>
     </div>
@@ -390,7 +385,7 @@
           <div style="color: lightgray">Hyderabad</div>
           <div style="color: grey">Kolkata</div>
           <div style="color: lightgray">Mumbai</div>
-          <div style="color: grey">Pune &nbsp;&</div>
+          <div style="color: grey">Pune &</div>
           <div style="color: lightgray">more.</div>
         </div>
       </div>

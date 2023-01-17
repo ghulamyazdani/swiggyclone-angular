@@ -33,6 +33,7 @@ app.controller("signup", function ($scope) {
   var userData = { email: "", username: "", password: "", confirmPassword: "" };
 
   $scope.userData = userData;
+  $scope.signedupstate = false;
   $scope.handleSignUp = function (e) {
     e.preventDefault();
     var userLocalData = JSON.parse(localStorage.getItem("usersData")) || [];
@@ -46,6 +47,7 @@ app.controller("signup", function ($scope) {
     userLocalData.push(userData);
     localStorage.setItem("usersData", JSON.stringify(userLocalData));
     // signupForm.innerHTML = `<h1>Signup Successful</h1>`;
+    $scope.signedupstate = true;
   };
   $scope.emailRegex =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
