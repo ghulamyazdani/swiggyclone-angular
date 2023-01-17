@@ -353,24 +353,25 @@
         </div>
         <!-- <button id="userbutton">Username</button> -->
       </nav>
-      <div class="animation">
-        <h1 id="ani" class="animate-bottom"></h1>
+      <div ng-controller="animationType" class="animation">
+        <h1 id="ani" class="animate-bottom">{{animcontent}}</h1>
         <h2 style="font-size: 24px; font-weight: 400; color: #80807d">
           Order food from favourite resturants near you.
         </h2>
       </div>
-      <div class="trip" id="appending">
+      <div ng-controller="geolocation" class="trip" id="appending">
         <div class="check">
           <input
             class="chinu"
             id="inputt"
             type="text"
+            ng-model="location"
             placeholder="Enter your delivery location"
             autofocus="{true}"
             spellcheck="{false}"
           />
 
-          <button id="locateme" class="posey">
+          <button ng-click="getlocation()" id="locateme" class="posey">
             <i class="far fa-location"></i> Locate Me
           </button>
 
