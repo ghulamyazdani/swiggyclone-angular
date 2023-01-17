@@ -1,414 +1,458 @@
-<div id="drawer1" ng-controller="login" style="display: none" class="drawer">
-  <div class="drawer-align">
-    <div class="login_form">
-      <div
-        ng-controller="drawercontroller"
-        style="cursor: pointer"
-        class="mb-5"
-      >
-        <svg
-          width="30"
-          height="30"
-          ng-click="closeLoginDrawer()"
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="48" height="48" fill="white" fill-opacity="0.01" />
-          <path
-            d="M14 14L34 34"
-            stroke="#333"
-            stroke-width="1"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+<div ng-controller="drawercontroller">
+  <div
+    id="drawer1"
+    ng-hide="!loginDrawer"
+    ng-show="loginDrawer"
+    style="display: flex"
+    class="drawer"
+  >
+    <div class="drawer-align">
+      <div class="login_form">
+        <div style="cursor: pointer" class="mb-5">
+          <svg
+            width="30"
+            height="30"
+            ng-click="closeLoginDrawer()"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="48" height="48" fill="white" fill-opacity="0.01" />
+            <path
+              d="M14 14L34 34"
+              stroke="#333"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M14 34L34 14"
+              stroke="#333"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="left_div">
+          <h2>Login</h2>
+          <div style="width: 190px; margin-top: 5px"></div>
+          <p class="link_register">
+            or
+            <a onclick="handleSignupOpen()" style="cursor: pointer">
+              create an account
+            </a>
+          </p>
+        </div>
+        <div style="width: 20px; height: 3px; background-color: #101003"></div>
+        <div class="right_div">
+          <img
+            src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r"
+            alt=""
+            class="food_wrap"
           />
-          <path
-            d="M14 34L34 14"
-            stroke="#333"
-            stroke-width="1"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </div>
-      <div class="left_div">
-        <h2>Login</h2>
-        <div style="width: 190px; margin-top: 5px"></div>
-        <p class="link_register">
-          or
-          <a onclick="handleSignupOpen()" style="cursor: pointer">
-            create an account
-          </a>
-        </p>
-      </div>
-      <div style="width: 20px; height: 3px; background-color: #101003"></div>
-      <div class="right_div">
-        <img
-          src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r"
-          alt=""
-          class="food_wrap"
-        />
-      </div>
-      <form
-        name="loginForm"
-        ng-submit="handleLogin($event)"
-        class="loginForm"
-        id="loginForm"
-      >
-        <input
-          type="text"
-          class="Number_input"
-          id="inputEmailOrUser4"
-          name="emailorusername"
-          placeholder="Email or Username"
-          ng-model="loginData.emailorusername"
-          ng-required="true"
-          required
-        />
-        <span
-          class="text-danger"
-          ng-show="loginForm.emailorusername.$error.required && loginForm.emailorusername.$touched || loginForm.emailorusername.$error.required && loginForm.emailorusername.$dirty"
-          class=""
-        >
-          Username or Email field is required
-        </span>
-        <br />
-        <input
-          type="password"
-          class="Number_input"
-          name="password"
-          placeholder="Password"
-          ng-model="loginData.password"
-          ng-required="true"
-          required
-        />
-        <span
-          class="text-danger"
-          ng-show="loginForm.password.$error.required && loginForm.password.$touched || loginForm.password.$error.required && loginForm.password.$dirty"
-          class=""
-        >
-          Password is required
-        </span>
-        <!-- <div id="password-validation" class="text-danger"></div> -->
-        <div id="final-validation-login" class="text-danger"></div>
-        <button type="submit" class="login_btn">Login</button>
-      </form>
-      <div class="foot_text">
-        <p>
-          By clicking on Login, I accept the terms & Conditions & Privacy Policy
-        </p>
+        </div>
+
+        <div ng-show="logginSignupbtn">
+          <form
+            name="loginForm"
+            ng-submit="handleLogin($event)"
+            class="loginForm"
+            id="loginForm"
+          >
+            <input
+              type="text"
+              class="Number_input"
+              id="inputEmailOrUser4"
+              name="emailorusername"
+              placeholder="Email or Username"
+              ng-model="loginData.emailorusername"
+              ng-required="true"
+              required
+            />
+            <span
+              class="text-danger"
+              ng-show="loginForm.emailorusername.$error.required && loginForm.emailorusername.$touched || loginForm.emailorusername.$error.required && loginForm.emailorusername.$dirty"
+              class=""
+            >
+              Username or Email field is required
+            </span>
+            <br />
+            <input
+              type="password"
+              class="Number_input"
+              name="password"
+              placeholder="Password"
+              ng-model="loginData.password"
+              ng-required="true"
+              required
+            />
+            <span
+              class="text-danger"
+              ng-show="loginForm.password.$error.required && loginForm.password.$touched || loginForm.password.$error.required && loginForm.password.$dirty"
+              class=""
+            >
+              Password is required
+            </span>
+            <div id="final-validation-login" class="text-danger">
+              {{errormessage}}
+            </div>
+            <button type="submit" class="login_btn">Login</button>
+          </form>
+          <div class="foot_text">
+            <p>
+              By clicking on Login, I accept the terms & Conditions & Privacy
+              Policy
+            </p>
+          </div>
+        </div>
+        <div ng-show="!logginSignupbtn">
+          <h1>Login Successfull</h1>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Signup drawer -->
-<div id="drawer2" ng-controller="signup" style="display: none" class="drawer">
-  <div class="drawer-align">
-    <div class="login_form">
-      <div
-        ng-controller="drawercontroller"
-        style="cursor: pointer"
-        class="mb-5"
-      >
-        <svg
-          width="30"
-          height="30"
-          ng-click="closeSignUpDrawer()"
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="48" height="48" fill="white" fill-opacity="0.01" />
-          <path
-            d="M14 14L34 34"
-            stroke="#333"
-            stroke-width="1"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+  <!-- Signup drawer -->
+  <div
+    id="drawer2"
+    ng-hide="!signupDrawer"
+    ng-show="signupDrawer"
+    ng-controller="signup"
+    style="display: flex"
+    class="drawer"
+  >
+    <div class="drawer-align">
+      <div class="login_form">
+        <div style="cursor: pointer" class="mb-5">
+          <svg
+            width="30"
+            height="30"
+            ng-click="closeSignUpDrawer()"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="48" height="48" fill="white" fill-opacity="0.01" />
+            <path
+              d="M14 14L34 34"
+              stroke="#333"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M14 34L34 14"
+              stroke="#333"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="left_div">
+          <h2>Sign up</h2>
+          <div style="width: 190px; margin-top: 5px"></div>
+          <p class="link_register">
+            or
+            <a onclick="handleLoginOpen()" style="cursor: pointer">
+              login to your account
+            </a>
+          </p>
+        </div>
+        <div style="width: 20px; height: 3px; background-color: #101003"></div>
+        <div class="right_div">
+          <img
+            src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r"
+            alt=""
+            class="food_wrap"
           />
-          <path
-            d="M14 34L34 14"
-            stroke="#333"
-            stroke-width="1"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+        </div>
+        <form
+          name="signupForm"
+          ng-submit="handleSignUp($event)"
+          class="signupForm"
+        >
+          <input
+            type="email"
+            class="Number_input"
+            id="inputEmail4"
+            name="email"
+            ng-model="userData.email"
+            ng-required="true"
+            placeholder="Email"
+            required
           />
-        </svg>
-      </div>
-      <div class="left_div">
-        <h2>Sign up</h2>
-        <div style="width: 190px; margin-top: 5px"></div>
-        <p class="link_register">
-          or
-          <a onclick="handleLoginOpen()" style="cursor: pointer">
-            login to your account
-          </a>
-        </p>
-      </div>
-      <div style="width: 20px; height: 3px; background-color: #101003"></div>
-      <div class="right_div">
-        <img
-          src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r"
-          alt=""
-          class="food_wrap"
-        />
-      </div>
-      <form
-        name="signupForm"
-        ng-submit="handleSignUp($event)"
-        class="signupForm"
-      >
-        <input
-          type="email"
-          class="Number_input"
-          id="inputEmail4"
-          name="email"
-          ng-model="userData.email"
-          ng-required="true"
-          placeholder="Email"
-          required
-        />
-        <span
-          class="text-danger"
-          ng-show="signupForm.email.$error.required && signupForm.email.$touched || signupForm.email.$error.required && signupForm.email.$dirty"
-          class=""
-        >
-          Email field is required
-        </span>
-        <span
-          class="text-danger"
-          ng-show="signupForm.email.$error.email && signupForm.email.$touched || signupForm.email.$error.email && signupForm.email.$dirty"
-          class=""
-        >
-          Invalid email address</span
-        >
+          <span
+            class="text-danger"
+            ng-show="signupForm.email.$error.required && signupForm.email.$touched || signupForm.email.$error.required && signupForm.email.$dirty"
+            class=""
+          >
+            Email field is required
+          </span>
+          <span
+            class="text-danger"
+            ng-show="signupForm.email.$error.email && signupForm.email.$touched || signupForm.email.$error.email && signupForm.email.$dirty"
+            class=""
+          >
+            Invalid email address</span
+          >
 
-        <input
-          type="string"
-          class="Number_input"
-          id="inputUsername4"
-          name="username"
-          ng-model="userData.username"
-          ng-required="true"
-          placeholder="Username"
-          ng-minlength="3"
-          ng-maxlength="15"
-          required
-        />
-        <span
-          class="text-danger"
-          ng-show="signupForm.username.$error.required && signupForm.username.$touched"
-        >
-          Username is Required</span
-        >
+          <input
+            type="string"
+            class="Number_input"
+            id="inputUsername4"
+            name="username"
+            ng-model="userData.username"
+            ng-required="true"
+            placeholder="Username"
+            ng-minlength="3"
+            ng-maxlength="15"
+            required
+          />
+          <span
+            class="text-danger"
+            ng-show="signupForm.username.$error.required && signupForm.username.$touched"
+          >
+            Username is Required</span
+          >
 
-        <span
-          class="text-danger"
-          ng-show="signupForm.username.$error.minlength  && signupForm.username.$touched"
-        >
-          Username is too short</span
-        >
-        <span
-          class="text-danger"
-          ng-show="signupForm.username.$error.maxlength && signupForm.username.$touched"
-        >
-          Username is too big</span
-        >
-        <input
-          type="password"
-          class="Number_input"
-          name="password"
-          id="inputPassword4"
-          ng-model="userData.password"
-          ng-required="true"
-          placeholder="Password"
-          ng-pattern="passwordRegex"
-        />
-        <span
-          class="text-danger"
-          ng-show="signupForm.password.$error.required && signupForm.password.$touched"
-        >
-          Password is Required</span
-        >
-        <span
-          class="text-danger"
-          ng-show="signupForm.password.$error.pattern  && signupForm.password.$touched"
-        >
-          Password should be atleast 8 characters, one uppercase, one lowercase
-          and one number</span
-        >
-        <input
-          type="password"
-          class="Number_input"
-          name="confirmPassword"
-          id="inputConfirmPassword4"
-          ng-model="userData.confirmPassword"
-          ng-required="true"
-          placeholder="Confirm Password"
-          compare-to="userData.password"
-        />
-        <!-- <div
-          class="text-danger"
-          ng-show="signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid || signupForm.confirmPassword.$dirty && userData.confirmPassword != userData.password"
-        >
-          <span ng-show="signupForm.confirmPassword.$error.required"
-            >Re-type password is required</span
+          <span
+            class="text-danger"
+            ng-show="signupForm.username.$error.minlength  && signupForm.username.$touched"
+          >
+            Username is too short</span
           >
           <span
-            ng-show="!signupForm.confirmPassword.$error.required && userData.confirmPassword != userData.password"
-            >Password did not match</span
+            class="text-danger"
+            ng-show="signupForm.username.$error.maxlength && signupForm.username.$touched"
           >
-        </div> -->
+            Username is too big</span
+          >
+          <input
+            type="password"
+            class="Number_input"
+            name="password"
+            id="inputPassword4"
+            ng-model="userData.password"
+            ng-required="true"
+            placeholder="Password"
+            ng-pattern="passwordRegex"
+          />
+          <span
+            class="text-danger"
+            ng-show="signupForm.password.$error.required && signupForm.password.$touched"
+          >
+            Password is Required</span
+          >
+          <span
+            class="text-danger"
+            ng-show="signupForm.password.$error.pattern  && signupForm.password.$touched"
+          >
+            Password should be atleast 8 characters, one uppercase, one
+            lowercase and one number</span
+          >
+          <input
+            type="password"
+            class="Number_input"
+            name="confirmPassword"
+            id="inputConfirmPassword4"
+            ng-model="userData.confirmPassword"
+            ng-required="true"
+            placeholder="Confirm Password"
+            compare-to="userData.password"
+          />
+          <!-- <div
+            class="text-danger"
+            ng-show="signupForm.confirmPassword.$dirty && signupForm.confirmPassword.$invalid || signupForm.confirmPassword.$dirty && userData.confirmPassword != userData.password"
+          >
+            <span ng-show="signupForm.confirmPassword.$error.required"
+              >Re-type password is required</span
+            >
+            <span
+              ng-show="!signupForm.confirmPassword.$error.required && userData.confirmPassword != userData.password"
+              >Password did not match</span
+            >
+          </div> -->
 
-        <span
-          class="text-danger"
-          ng-show="signupForm.confirmPassword.$error.required && signupForm.confirmPassword.$touched "
-        >
-          Confirm password is Required</span
-        >
-        <span
-          class="text-danger"
-          ng-show=" userData.confirmPassword !== userData.password && signupForm.confirmPassword.$touched"
-        >
-          Confirm password should be same as password</span
-        >
+          <span
+            class="text-danger"
+            ng-show="signupForm.confirmPassword.$error.required && signupForm.confirmPassword.$touched "
+          >
+            Confirm password is Required</span
+          >
+          <span
+            class="text-danger"
+            ng-show=" userData.confirmPassword !== userData.password && signupForm.confirmPassword.$touched"
+          >
+            Confirm password should be same as password</span
+          >
 
-        <button id="signup" type="submit" class="login_btn">Sign up</button>
-      </form>
-      <div class="foot_text">
+          <button id="signup" type="submit" class="login_btn">Sign up</button>
+        </form>
+        <div class="foot_text">
+          <p>
+            By clicking on Login, I accept the terms & Conditions & Privacy
+            Policy
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="left">
+      <nav class="d-flex flex-row align-items-center justify-content-between">
+        <a class="navbar-brand" href="/">
+          <img
+            src="images/Swiggy_Logo_9.png"
+            class="d-inline-block align-top"
+            alt=""
+          />
+        </a>
+        <div ng-hide="!logginSignupbtn" ng-show="logginSignupbtn">
+          <div
+            id="mainop"
+            class="d-flex flex-row align-items-center justify-content-center"
+          >
+            <button ng-click="handleLoginOpen()" id="loginopen">Login</button>
+            <button ng-click="handleSignupOpen()" id="signupopen">
+              SignUp
+            </button>
+          </div>
+        </div>
+        <div ng-hide="logginSignupbtn" ng-show="!logginSignupbtn">
+          <div
+            class="d-flex flex-row align-items-center justify-content-center"
+          >
+            <button id="userbutton">{{username}}</button>
+            <div id="logout" ng-click="handleLogout()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-log-out"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <!-- <button id="userbutton">Username</button> -->
+      </nav>
+      <div class="animation">
+        <h1 id="ani" class="animate-bottom"></h1>
+        <h2 style="font-size: 24px; font-weight: 400; color: #80807d">
+          Order food from favourite resturants near you.
+        </h2>
+      </div>
+      <div class="trip" id="appending">
+        <div class="check">
+          <input
+            class="chinu"
+            id="inputt"
+            type="text"
+            placeholder="Enter your delivery location"
+            autofocus="{true}"
+            spellcheck="{false}"
+          />
+
+          <button id="locateme" class="posey">
+            <i class="far fa-location"></i> Locate Me
+          </button>
+
+          <button id="changing" value="toogle_food">Find Food</button>
+        </div>
+      </div>
+      <div style="margin-bottom: 40px; margin-top: 50px">
+        <h3 style="font-size: 18px; font-weight: 600; color: grey">
+          POPULAR CITIES IN INDIA
+        </h3>
+        <div style="padding-right: 15px" class="popular alterflex">
+          <div style="color: grey">Ahmedabad</div>
+          <div style="color: lightgray">Bangalore</div>
+          <div style="color: grey">Chennai</div>
+          <div style="color: lightgray">Delhi</div>
+          <div style="color: grey">Gurgaon</div>
+          <div style="color: lightgray">Hyderabad</div>
+          <div style="color: grey">Kolkata</div>
+          <div style="color: lightgray">Mumbai</div>
+          <div style="color: grey">Pune &nbsp;&</div>
+          <div style="color: lightgray">more.</div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <img
+        style="
+          width: 755px;
+          height: 100%;
+          object-fit: cover;
+          object-position: -3px -27px;
+        "
+        src="https://web.archive.org/web/20210903175246im_/https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_1340/Lunch1_vlksgq"
+      />
+    </div>
+  </div>
+  <div class="two">
+    <div class="car">
+      <div>
+        <img
+          style="width: 105px; height: 199px"
+          src="https://web.archive.org/web/20210903175337im_/https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_210,h_398/4x_-_No_min_order_x0bxuf"
+        />
+      </div>
+      <div>
+        <h3>No Minimum Order</h3>
+      </div>
+      <div>
         <p>
-          By clicking on Login, I accept the terms & Conditions & Privacy Policy
+          Order in for yourself or for the group, with no restrictions on order
+          value
         </p>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="split">
-  <div class="left">
-    <nav class="d-flex flex-row align-items-center justify-content-between">
-      <a class="navbar-brand" href="/">
+    <div class="car">
+      <div>
         <img
-          src="images/Swiggy_Logo_9.png"
-          class="d-inline-block align-top"
-          alt=""
+          style="width: 112px; height: 206px"
+          src="https://web.archive.org/web/20210903175338im_/https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_224,h_412/4x_Live_order_zzotwy"
         />
-      </a>
-      <div
-        id="mainop"
-        ng-controller="drawercontroller"
-        class="d-flex flex-row align-items-center justify-content-center"
-      >
-        <button ng-click="handleLoginOpen()" id="loginopen">Login</button>
-        <button ng-click="handleSignupOpen()" id="signupopen">SignUp</button>
       </div>
-      <!-- <button id="userbutton">Username</button> -->
-    </nav>
-    <div class="animation">
-      <h1 id="ani" class="animate-bottom"></h1>
-      <h2 style="font-size: 24px; font-weight: 400; color: #80807d">
-        Order food from favourite resturants near you.
-      </h2>
+      <div>
+        <h3>Live Order Tracking</h3>
+      </div>
+      <div>
+        <p>
+          Know where your order is at all times, from the restaurant to your
+          doorstep
+        </p>
+      </div>
     </div>
-    <div class="trip" id="appending">
-      <div class="check">
-        <input
-          class="chinu"
-          id="inputt"
-          type="text"
-          placeholder="Enter your delivery location"
-          autofocus="{true}"
-          spellcheck="{false}"
+    <div class="car">
+      <div>
+        <img
+          style="width: 124px; height: 188px"
+          src="https://web.archive.org/web/20210903175339im_/https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
         />
-
-        <button id="locateme" class="posey">
-          <i class="far fa-location"></i> Locate Me
-        </button>
-
-        <button id="changing" value="toogle_food">Find Food</button>
       </div>
-    </div>
-    <div style="margin-bottom: 40px; margin-top: 50px">
-      <h3 style="font-size: 18px; font-weight: 600; color: grey">
-        POPULAR CITIES IN INDIA
-      </h3>
-      <div style="padding-right: 15px" class="popular alterflex">
-        <div style="color: grey">Ahmedabad</div>
-        <div style="color: lightgray">Bangalore</div>
-        <div style="color: grey">Chennai</div>
-        <div style="color: lightgray">Delhi</div>
-        <div style="color: grey">Gurgaon</div>
-        <div style="color: lightgray">Hyderabad</div>
-        <div style="color: grey">Kolkata</div>
-        <div style="color: lightgray">Mumbai</div>
-        <div style="color: grey">Pune &nbsp;&</div>
-        <div style="color: lightgray">more.</div>
+      <div>
+        <h3>Lightning-Fast Delivery</h3>
       </div>
-    </div>
-  </div>
-  <div class="right">
-    <img
-      style="
-        width: 755px;
-        height: 100%;
-        object-fit: cover;
-        object-position: -3px -27px;
-      "
-      src="https://web.archive.org/web/20210903175246im_/https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_1340/Lunch1_vlksgq"
-    />
-  </div>
-</div>
-<div class="two">
-  <div class="car">
-    <div>
-      <img
-        style="width: 105px; height: 199px"
-        src="https://web.archive.org/web/20210903175337im_/https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_210,h_398/4x_-_No_min_order_x0bxuf"
-      />
-    </div>
-    <div>
-      <h3>No Minimum Order</h3>
-    </div>
-    <div>
-      <p>
-        Order in for yourself or for the group, with no restrictions on order
-        value
-      </p>
-    </div>
-  </div>
-  <div class="car">
-    <div>
-      <img
-        style="width: 112px; height: 206px"
-        src="https://web.archive.org/web/20210903175338im_/https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_224,h_412/4x_Live_order_zzotwy"
-      />
-    </div>
-    <div>
-      <h3>Live Order Tracking</h3>
-    </div>
-    <div>
-      <p>
-        Know where your order is at all times, from the restaurant to your
-        doorstep
-      </p>
-    </div>
-  </div>
-  <div class="car">
-    <div>
-      <img
-        style="width: 124px; height: 188px"
-        src="https://web.archive.org/web/20210903175339im_/https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
-      />
-    </div>
-    <div>
-      <h3>Lightning-Fast Delivery</h3>
-    </div>
-    <div>
-      <p>
-        Experience Swiggy's superfast delivery for food delivered fresh & on
-        time
-      </p>
+      <div>
+        <p>
+          Experience Swiggy's superfast delivery for food delivered fresh & on
+          time
+        </p>
+      </div>
     </div>
   </div>
 </div>

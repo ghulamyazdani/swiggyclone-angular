@@ -1,11 +1,11 @@
 // var app = angular.module("swiggy", []);
 var app = angular.module("swiggy", ["ui.router"]);
-
 app.config(function ($stateProvider) {
   var mainState = {
     name: "Main",
     url: "/",
     templateUrl: "/views/home.html",
+    controller: "login",
   };
   var helloState = {
     name: "menu",
@@ -79,103 +79,110 @@ app.controller("signup", function ($scope) {
   };
 });
 
-app.controller("login", function ($scope) {
-  var loginData = { emailorusername: "", password: "" };
+app.controller("login", [
+  "$scope",
+  "$timeout",
+  function ($scope, $timeout) {
+    var loginData = { emailorusername: "", password: "" };
+    const userLogged = JSON.parse(localStorage.getItem("user"));
 
-  $scope.loginData = loginData;
-  $scope.handleLogin = function (e) {
-    e.preventDefault();
-    if (validateEmail(loginData.emailorusername)) {
+    $scope.errormessage = "";
+    $scope.loginData = loginData;
+    $scope.logginSignupbtn = userLogged ? false : true;
+    $scope.username = userLogged ? userLogged.username : "";
+    $scope.handleLogin = function () {
       const usersData = JSON.parse(localStorage.getItem("usersData")) || [];
+      if (validateEmail(loginData.emailorusername)) {
+        const tempData = usersData.find(
+          (user) => user.email === loginData.emailorusername
+        );
+        if (tempData !== undefined) {
+          if (tempData.password === loginData.password) {
+            localStorage.setItem("user", JSON.stringify(tempData));
+            console.log("loggedIn email");
+            $scope.username = tempData.username;
+            $scope.logginSignupbtn = false;
+            console.log($scope.logginSignupbtn);
+          } else {
+            $scope.errormessage = "Password is Incorrect";
+            $timeout(function () {
+              $scope.errormessage = "";
+            }, 2000);
+          }
+        } else {
+          $scope.errormessage = "Email does not exist in database";
+          $timeout(function () {
+            $scope.errormessage = "";
+          }, 2000);
+        }
+      } else {
+        const tempData = usersData.find(
+          (user) => user.username === loginData.emailorusername
+        );
+        if (tempData !== undefined) {
+          if (tempData.password === loginData.password) {
+            // window.location.href = "index.html";
+            localStorage.setItem("user", JSON.stringify(tempData));
+            console.log("loggedIn");
+            $scope.username = loginData.emailorusername;
+            $scope.logginSignupbtn = false;
+            console.log($scope.logginSignupbtn);
+          } else {
+            $scope.errormessage = "Password is Incorrect";
+            $timeout(function () {
+              $scope.errormessage = "";
+            }, 2000);
+          }
+        } else {
+          $scope.errormessage = "Username does not exist in database";
+          $timeout(function () {
+            $scope.errormessage = "";
+          }, 2000);
+        }
+      }
+    };
 
-      const tempData = usersData.find(
-        (user) => user.email === loginData.emailorusername
-      );
-      if (tempData !== undefined) {
-        if (tempData.password === loginData.password) {
-          window.location.href = "index.html";
-          localStorage.setItem("user", JSON.stringify(tempData));
-        } else {
-          // finalValidation.innerHTML = `Password is Incorrect`;
-          console.log(`Password is Incorrect`);
-          setTimeout(() => {
-            // finalValidation.innerHTML = ``;
-          }, 2000);
-        }
-      } else {
-        console.log(`Email does not exist in database`);
-        setTimeout(() => {
-          // finalValidation.innerHTML = ``;
-        }, 2000);
-      }
-    } else {
-      const tempData = usersData.find(
-        (user) => user.username === loginData.emailorusername
-      );
-      if (tempData !== undefined) {
-        if (tempData.password === loginData.password) {
-          // window.location.href = "index.html";
-          localStorage.setItem("user", JSON.stringify(tempData));
-          document.getElementById(
-            "mainop"
-          ).innerHTML = `<button id="userbutton">${loginData.emailorusername}</button> <div id="logout" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></div>`;
-        } else {
-          // finalValidation.innerHTML = `Password is Incorrect`;
-          setTimeout(() => {
-            // finalValidation.innerHTML = ``;
-          }, 2000);
-        }
-      } else {
-        // finalValidation.innerHTML = `Username does not exist in database`;
-        setTimeout(() => {
-          // finalValidation.innerHTML = ``;
-        }, 2000);
-      }
+    $scope.handleLogout = function () {
+      console.log($scope.logginSignupbtn);
+      console.log("logout");
+      localStorage.removeItem("user");
+      $scope.username = "";
+      $scope.logginSignupbtn = true;
+      console.log($scope.logginSignupbtn);
+    };
+
+    function validateEmail(email) {
+      const re =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
     }
-
-    console.log(validateEmail(loginData.emailorusername));
-  };
-
-  function validateEmail(email) {
-    const re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
-});
+  },
+]);
 
 app.controller("drawercontroller", function ($scope) {
-  var state = "";
+  $scope.loginDrawer = false;
+  $scope.signupDrawer = false;
   $scope.handleSignupOpen = function () {
-    if (document.getElementById("drawer2").style.display === "none") {
-      document.getElementById("drawer1").style.display = "none";
-      document.getElementById("drawer2").style.display = "flex";
-      state = "signup";
+    if ($scope.signupDrawer === false) {
+      $scope.signupDrawer = true;
+      $scope.loginDrawer = false;
     } else {
-      document.getElementById("drawer2").style.display = "none";
+      $scope.signupDrawer = false;
     }
   };
   $scope.handleLoginOpen = function () {
-    if (document.getElementById("drawer1").style.display === "none") {
-      document.getElementById("drawer2").style.display = "none";
-      document.getElementById("drawer1").style.display = "flex";
-      state = "login";
-      console.log($scope.state);
+    if ($scope.loginDrawer === false) {
+      $scope.signupDrawer = false;
+      $scope.loginDrawer = true;
     } else {
-      document.getElementById("drawer1").style.display = "none";
+      $scope.loginDrawer = false;
     }
   };
-  // $scope.closeDrawer = function (state) {
-  //   console.log(state);
-  //   if (state === "signup") {
-  //     document.getElementById("drawer2").style.display = "none";
-  //   } else if (state === "login") {
-  //     document.getElementById("drawer1").style.display = "none";
-  //   }
-  // };
+
   $scope.closeSignUpDrawer = function () {
-    document.getElementById("drawer2").style.display = "none";
+    $scope.signupDrawer = false;
   };
   $scope.closeLoginDrawer = function () {
-    document.getElementById("drawer1").style.display = "none";
+    $scope.loginDrawer = false;
   };
 });
