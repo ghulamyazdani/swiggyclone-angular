@@ -144,6 +144,7 @@ app.controller("login", function ($scope) {
 });
 
 app.controller("drawercontroller", function ($scope) {
+  var state = "";
   $scope.handleSignupOpen = function () {
     if (document.getElementById("drawer2").style.display === "none") {
       document.getElementById("drawer1").style.display = "none";
@@ -152,5 +153,29 @@ app.controller("drawercontroller", function ($scope) {
     } else {
       document.getElementById("drawer2").style.display = "none";
     }
+  };
+  $scope.handleLoginOpen = function () {
+    if (document.getElementById("drawer1").style.display === "none") {
+      document.getElementById("drawer2").style.display = "none";
+      document.getElementById("drawer1").style.display = "flex";
+      state = "login";
+      console.log($scope.state);
+    } else {
+      document.getElementById("drawer1").style.display = "none";
+    }
+  };
+  // $scope.closeDrawer = function (state) {
+  //   console.log(state);
+  //   if (state === "signup") {
+  //     document.getElementById("drawer2").style.display = "none";
+  //   } else if (state === "login") {
+  //     document.getElementById("drawer1").style.display = "none";
+  //   }
+  // };
+  $scope.closeSignUpDrawer = function () {
+    document.getElementById("drawer2").style.display = "none";
+  };
+  $scope.closeLoginDrawer = function () {
+    document.getElementById("drawer1").style.display = "none";
   };
 });

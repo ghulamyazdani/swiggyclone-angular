@@ -1,10 +1,15 @@
-<div id="drawer1" ng-controller="login" style="display: flex" class="drawer">
+<div id="drawer1" ng-controller="login" style="display: none" class="drawer">
   <div class="drawer-align">
     <div class="login_form">
-      <div onClick="closeDrawer()" style="cursor: pointer" class="mb-5">
+      <div
+        ng-controller="drawercontroller"
+        style="cursor: pointer"
+        class="mb-5"
+      >
         <svg
           width="30"
           height="30"
+          ng-click="closeLoginDrawer()"
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -101,10 +106,15 @@
 <div id="drawer2" ng-controller="signup" style="display: none" class="drawer">
   <div class="drawer-align">
     <div class="login_form">
-      <div onClick="closeDrawer()" style="cursor: pointer" class="mb-5">
+      <div
+        ng-controller="drawercontroller"
+        style="cursor: pointer"
+        class="mb-5"
+      >
         <svg
           width="30"
           height="30"
+          ng-click="closeSignUpDrawer()"
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -287,10 +297,11 @@
       </a>
       <div
         id="mainop"
+        ng-controller="drawercontroller"
         class="d-flex flex-row align-items-center justify-content-center"
       >
-        <button id="loginopen">Login</button>
-        <button ng-click="" id="signupopen">SignUp</button>
+        <button ng-click="handleLoginOpen()" id="loginopen">Login</button>
+        <button ng-click="handleSignupOpen()" id="signupopen">SignUp</button>
       </div>
       <!-- <button id="userbutton">Username</button> -->
     </nav>
