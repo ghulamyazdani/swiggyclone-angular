@@ -183,6 +183,18 @@ input:focus {
   padding-bottom: 80px;
   color: white;
   text-align: center;
+  /* margin-top: 5rem; */
+  align-items: center;
+}
+.twocopy {
+  background-color: #2b1e16;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-bottom: 80px;
+  color: white;
+  text-align: center;
+  margin-top: 5rem;
   align-items: center;
 }
 .car {

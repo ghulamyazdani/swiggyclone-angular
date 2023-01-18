@@ -215,6 +215,7 @@
 .searchSection #search {
   background-color: #fc8019;
   border: none;
+  padding: 1rem;
   color: white;
 }
 
