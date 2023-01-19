@@ -25,7 +25,10 @@ angular.module("swiggy").controller("geolocation", [
               $scope.location = fulllocation;
               localStorage.setItem("location", fulllocation);
               console.log(fulllocation);
-              $location.path("/menu");
+              if (localStorage.getItem("user")) {
+                $location.path("/menu");
+              } else {
+              }
               //   window.location.href = "#/menu";
               //   document.getElementById("location").innerHTML = fulllocation;
               //   $scope.$apply();

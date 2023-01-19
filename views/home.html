@@ -5,7 +5,7 @@
       ng-hide="!loginDrawer"
       ng-show="loginDrawer"
       style="display: flex"
-      class="drawer"
+      class="drawer-right drawer"
     >
       <div class="drawer-align">
         <div class="login_form">
@@ -109,8 +109,16 @@
               </p>
             </div>
           </div>
-          <div ng-show="!logginSignupbtn">
-            <h1>Login Successfull</h1>
+          <div class="success-message" ng-show="!logginSignupbtn">
+            <h1>
+              Login Successfull
+              <img
+                src="https://media.tenor.com/0AVbKGY_MxMAAAAM/check-mark-verified.gif"
+                alt=""
+                height="40"
+                width="40"
+              />
+            </h1>
           </div>
         </div>
       </div>
@@ -123,7 +131,7 @@
       ng-show="signupDrawer"
       ng-controller="signup"
       style="display: flex"
-      class="drawer"
+      class="drawer-right drawer"
     >
       <div class="drawer-align">
         <div class="login_form">
@@ -256,7 +264,7 @@
                 ng-show="signupForm.password.$error.pattern  && signupForm.password.$touched"
               >
                 Password should be atleast 8 characters, one uppercase, one
-                lowercase and one number</span
+                lowercase and two number</span
               >
               <input
                 type="password"
@@ -289,7 +297,7 @@
               >
               <span
                 class="text-danger"
-                ng-show=" userData.confirmPassword !== userData.password && signupForm.confirmPassword.$touched"
+                ng-show=" userData.confirmPassword !== userData.password && signupForm.confirmPassword.$touched && signupForm.password.$dirty"
               >
                 Confirm password should be same as password</span
               >
@@ -305,8 +313,16 @@
               </p>
             </div>
           </div>
-          <div ng-show="signedupstate">
-            <h1>Signup sucessfull</h1>
+          <div class="success-message" ng-show="signedupstate">
+            <h1>
+              Signup sucessfull
+              <img
+                src="https://media.tenor.com/0AVbKGY_MxMAAAAM/check-mark-verified.gif"
+                alt=""
+                height="40"
+                width="40"
+              />
+            </h1>
           </div>
         </div>
       </div>
@@ -379,7 +395,8 @@
             />
 
             <button ng-click="getlocation()" id="locateme" class="posey">
-              <i class="far fa-location"></i> Locate Me
+              <i class="fas fa-location"></i>
+              Locate Me
             </button>
 
             <button id="changing" value="toogle_food">Find Food</button>

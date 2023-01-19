@@ -7,7 +7,69 @@
       />
     </div> -->
   <!-- Modal -->
+
   <div ng-controller="menu">
+    <div
+      id="drawer1"
+      ng-hide="!showlocDrawer"
+      ng-show="showlocDrawer"
+      style="display: flex"
+      class="drawer-left drawer"
+    >
+      <div class="location-drawer-align">
+        <div class="login_form">
+          <div style="cursor: pointer" class="mb-5">
+            <svg
+              width="30"
+              height="30"
+              ng-click="openLocDrawer()"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="48" height="48" fill="white" fill-opacity="0.01" />
+              <path
+                d="M14 14L34 34"
+                stroke="#333"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14 34L34 14"
+                stroke="#333"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="location_search_box">
+            <input
+              type="text"
+              class="location_search_input"
+              name=""
+              id="inputPassword4"
+              ng-required="true"
+              placeholder="Search"
+            />
+          </div>
+          <div class="getlocation">
+            <i class="fas fa-location"></i>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+              "
+            >
+              <span class="gcl">Get current location</span>
+              <span class="ug">using Gps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="modal fade"
       id="exampleModalCenter"
@@ -38,7 +100,7 @@
                   object-fit: cover;
                   margin-right: 1rem;
                 "
-                src="{{item.img}}"
+                ng-src="{{item.img}}"
                 alt=""
               />
               <div class="itemText">
@@ -104,7 +166,7 @@
                 </defs>
               </svg>
             </a>
-            <div class="location-div">
+            <div ng-click="openLocDrawer()" class="location-div">
               <span class="other">Other</span>
               <span class="location">{{location}}</span>
               <span class="arrow-down"
@@ -318,7 +380,7 @@
                         alt="Waffl'd"
                         width="254"
                         height="160"
-                        src="{{place.mealImg}}"
+                        ng-src="{{place.mealImg}}"
                       />
                     </div>
                     <div

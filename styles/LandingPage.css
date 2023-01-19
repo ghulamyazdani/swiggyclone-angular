@@ -394,9 +394,14 @@ form {
   position: fixed;
   top: 0px;
   outline: 0px;
-  right: 0px;
 }
 
+.drawer-left {
+  left: 0px;
+}
+.drawer-right {
+  right: 0px;
+}
 .drawer-align {
   padding: 32px;
   width: 500px;
@@ -414,4 +419,12 @@ form {
 .signupForm {
   display: flex;
   flex-direction: column;
+}
+
+.success-message h1 {
+  margin-top: 3rem;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }

@@ -116,6 +116,11 @@ angular.module("swiggy").controller("menu", [
           "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets.",
       },
     ];
+    $scope.showlocDrawer = false;
+    $scope.openLocDrawer = function () {
+      console.log("working");
+      $scope.showlocDrawer = !$scope.showlocDrawer;
+    };
     $scope.mealsCount = $scope.placeList.length;
     $scope.cart = JSON.parse(localStorage.getItem("meals")) || [];
     $scope.cartCount = $scope.cart.length || 0;
@@ -174,16 +179,20 @@ angular.module("swiggy").controller("menu", [
       }
       $scope.reverseSort = status;
     };
+
     $scope.getSortClass = function (column, way) {
-      if (column === "rating" && $scope.sortway === "rating") {
-        return "active";
-      }
+      // if (column === "rating" && $scope.sortway === "rating") {
+      //   return "active";
+      // }
+      // if (column === "deliverytime" && $scope.sortway === "deliverytime") {
+      //   return "active";
+      // }
       if (column === "price") {
         console.log(way, $scope.sortway);
-        return way == $scope.sortway ? "active" : "not-active";
+        return way === $scope.sortway ? "active" : "not-active";
       }
-      if ($scope.sortColumn == column) {
-        return $scope.sortway ? "not-active" : "active";
+      if ($scope.sortway === column) {
+        return "active";
       }
 
       return "";
