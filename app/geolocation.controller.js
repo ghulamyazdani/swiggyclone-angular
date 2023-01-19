@@ -29,8 +29,6 @@ angular.module("swiggy").controller("geolocation", [
                 $location.path("/menu");
               } else {
               }
-              //   window.location.href = "#/menu";
-              //   document.getElementById("location").innerHTML = fulllocation;
               //   $scope.$apply();
             })
             .catch((error) => {

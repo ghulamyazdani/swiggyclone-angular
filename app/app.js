@@ -13,12 +13,12 @@ app.config(function ($stateProvider) {
     templateUrl: "/views/menu.html",
   };
 
-  var aboutState = {
-    name: "about",
-    url: "/about",
-    template: "<h3>menupage</h3>",
-  };
-  var aboutState = {
+  // var aboutState = {
+  //   name: "about",
+  //   url: "/about",
+  //   template: "<h3>menupage</h3>",
+  // };
+  var norouteState = {
     name: "noroute",
     url: "*path",
     template: "<h3>404 Not Found</h3>",
@@ -26,5 +26,5 @@ app.config(function ($stateProvider) {
 
   $stateProvider.state(mainState);
   $stateProvider.state(helloState);
-  $stateProvider.state(aboutState);
+  $stateProvider.state(norouteState);
 });

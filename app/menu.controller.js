@@ -128,7 +128,7 @@ angular.module("swiggy").controller("menu", [
     $scope.recentOrders = [];
     $scope.sortColumn = "name";
     $scope.reverseSort = false;
-    $scope.searchText = "";
+    // $scope.searchText = "";
     $scope.location = localStorage.getItem("location");
     $scope.user = JSON.parse(localStorage.getItem("user"));
     if ($scope.user === null) {
