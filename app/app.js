@@ -1,6 +1,11 @@
 // var app = angular.module("swiggy", []);
 var app = angular.module("swiggy", ["ui.router"]);
 app.config(function ($stateProvider) {
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: false,
+  // });
+
   var mainState = {
     name: "Main",
     url: "/",

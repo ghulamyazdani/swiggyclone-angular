@@ -178,7 +178,7 @@
             <ul class="items">
               <li>
                 <div class="nav-item">
-                  <a href="/#!/menu#searchSection">
+                  <a ng-click="scrollTo('locationShow')">
                     <svg
                       class="_1GTCc"
                       viewBox="5 -1 12 25"
@@ -410,9 +410,11 @@
                         ><span>{{place.rating}}</span>
                       </div>
                       <div>•</div>
-                      <div>{{place.deliverytime}}</div>
+                      <div>{{place.deliverytime }}</div>
                       <div>•</div>
-                      <div class="price">{{place.price}} FOR TWO</div>
+                      <div class="price">
+                        {{place.price | currency:"₹":0}} FOR TWO
+                      </div>
                     </div>
                     <div class="offer-div">
                       <span class="icon-offer-filled"

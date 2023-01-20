@@ -3,7 +3,9 @@ angular.module("swiggy").controller("menu", [
   "$http",
   "$timeout",
   "$location",
-  function ($scope, $http, $timeout, $location) {
+  "$log",
+  "$anchorScroll",
+  function ($scope, $http, $timeout, $location, $log, $anchorScroll) {
     $scope.placeList = [
       {
         id: 52977,
@@ -36,7 +38,7 @@ angular.module("swiggy").controller("menu", [
         id: 53065,
         mealImg:
           "https://www.themealdb.com/images/media/meals/g046bb1663960946.jpg",
-        name: "Burek",
+        name: "Shushi",
         country: "Croatian",
         price: 100,
         deliverytime: "30 min",
@@ -118,7 +120,8 @@ angular.module("swiggy").controller("menu", [
     ];
     $scope.showlocDrawer = false;
     $scope.openLocDrawer = function () {
-      console.log("working");
+      $log.info("working");
+      // console.log("working");
       $scope.showlocDrawer = !$scope.showlocDrawer;
     };
     $scope.mealsCount = $scope.placeList.length;
@@ -135,8 +138,6 @@ angular.module("swiggy").controller("menu", [
       $location.path("/");
     }
     $scope.addMealToLS = function (mealId, mealName, mealImg) {
-      // const meal = getMealsFromLS();
-
       const mealItem = {
         id: mealId,
         name: mealName,
@@ -144,7 +145,6 @@ angular.module("swiggy").controller("menu", [
       };
 
       $scope.cart.push(mealItem);
-      // console.log(meal);
       localStorage.setItem("meals", JSON.stringify($scope.cart));
       LoadCartMeal();
     };
@@ -178,6 +178,10 @@ angular.module("swiggy").controller("menu", [
         $scope.sortway = column;
       }
       $scope.reverseSort = status;
+    };
+    $scope.scrollTo = function (scrollLocation) {
+      $location.hash(scrollLocation);
+      $anchorScroll();
     };
 
     $scope.getSortClass = function (column, way) {

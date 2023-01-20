@@ -1,7 +1,8 @@
 angular.module("swiggy").controller("login", [
   "$scope",
   "$timeout",
-  function ($scope, $timeout) {
+  "validateService",
+  function ($scope, $timeout, validateService) {
     var loginData = { emailorusername: "", password: "" };
     const userLogged = JSON.parse(localStorage.getItem("user"));
 
@@ -11,7 +12,8 @@ angular.module("swiggy").controller("login", [
     $scope.username = userLogged ? userLogged.username : "";
     $scope.handleLogin = function () {
       const usersData = JSON.parse(localStorage.getItem("usersData")) || [];
-      if (validateEmail(loginData.emailorusername)) {
+      //   console.log(validateService.validateEmail(loginData.emailorusername));
+      if (validateService.validateEmail(loginData.emailorusername)) {
         const tempData = usersData.find(
           (user) => user.email === loginData.emailorusername
         );
@@ -69,11 +71,5 @@ angular.module("swiggy").controller("login", [
       $scope.logginSignupbtn = true;
       console.log($scope.logginSignupbtn);
     };
-
-    function validateEmail(email) {
-      const re =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    }
   },
 ]);
