@@ -1,30 +1,35 @@
-angular.module("swiggy").controller("animationType", function ($scope) {
-  $scope.animcontent = "chal ra hai";
+angular
+  .module("swiggy")
+  .controller("animationType", function ($scope, $interval) {
+    // $scope.$on("$start", function () {
+    //   typeWriter();
+    // });
+    $scope.animcontent = "chal ra hai";
 
-  var arr = [
-    "Hungry?",
-    "Movie marathon?",
-    "Unexpected guests?",
-    "Late Night at Office?",
-    "Cooking gone wrong?",
-    "Game Night?",
-    "Late Night at Office?",
-  ];
+    var arr = [
+      "Hungry?",
+      "Movie marathon?",
+      "Unexpected guests?",
+      "Late Night at Office?",
+      "Cooking gone wrong?",
+      "Game Night?",
+      "Late Night at Office?",
+    ];
 
-  var i = 0;
-  let count = 0;
-  let slideInterval;
+    var i = 0;
+    let count = 0;
+    let slideInterval;
 
-  function typeWriter() {
-    handleOnNextClick();
-    slideInterval = setInterval(() => {
+    function typeWriter() {
       handleOnNextClick();
-    }, 3000);
-  }
-  typeWriter();
+      slideInterval = $interval(() => {
+        handleOnNextClick();
+      }, 3000);
+    }
+    typeWriter();
 
-  function handleOnNextClick() {
-    count = (count + 1) % arr.length;
-    $scope.animcontent = arr[count];
-  }
-});
+    function handleOnNextClick() {
+      count = (count + 1) % arr.length;
+      $scope.animcontent = arr[count];
+    }
+  });
