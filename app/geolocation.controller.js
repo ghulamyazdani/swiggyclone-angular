@@ -1,4 +1,4 @@
-angular.module("swiggy").controller("geolocation", [
+app.controller("geolocation", [
   "$scope",
   "$http",
   "$timeout",

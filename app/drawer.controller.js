@@ -1,4 +1,4 @@
-angular.module("swiggy").controller("drawercontroller", function ($scope) {
+app.controller("drawercontroller", function ($scope) {
   $scope.loginDrawer = false;
   $scope.signupDrawer = false;
   $scope.handleSignupOpen = function () {

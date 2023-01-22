@@ -12,7 +12,7 @@ app.config(function (
   // });
   $urlMatcherFactoryProvider.caseInsensitive(true);
   $urlRouterProvider.otherwise("/");
-  $locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix("");
 
   var mainState = {

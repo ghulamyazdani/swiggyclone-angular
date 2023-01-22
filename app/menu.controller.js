@@ -1,4 +1,4 @@
-angular.module("swiggy").controller("menu", [
+app.controller("menu", [
   "$scope",
   "$http",
   "$timeout",

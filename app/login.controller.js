@@ -1,4 +1,4 @@
-angular.module("swiggy").controller("login", [
+app.controller("login", [
   "$scope",
   "$timeout",
   "validateService",

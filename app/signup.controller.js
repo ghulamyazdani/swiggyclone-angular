@@ -1,4 +1,4 @@
-angular.module("swiggy").controller("signup", function ($scope) {
+app.controller("signup", function ($scope) {
   var userData = { email: "", username: "", password: "", confirmPassword: "" };
 
   $scope.userData = userData;
