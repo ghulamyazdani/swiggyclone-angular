@@ -12,6 +12,7 @@ app.directive("validateEmail", [
   },
 ]);
 
+// can be used to create components or templates that can be used in the html
 app.directive("myInfoMsg", [
   function () {
     return {
