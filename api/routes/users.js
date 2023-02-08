@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/login", (req, res) => {
-  res.send("Hello World!");
+router.post("/login", (req, res) => {
+  console.log(req.body);
+  res.send(JSON.stringify(req.body));
 });
 
 router.get("/signup", (req, res) => {
-  res.send("Hello World!");
+  res.send("Signup");
 });
 
 module.exports = router;
