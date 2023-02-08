@@ -9,10 +9,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/", (req, res) => {
-  res.send("Hello World!");
-});
+// Routes
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const authRouter = require("./routes/auth");
+
+app.use("/api/", indexRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Api listening at http://localhost:${port}`);
 });
