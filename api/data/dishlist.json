@@ -1,0 +1,98 @@
+{
+  "dishes": [
+    {
+      "id": 52977,
+      "mealImg": "https://www.themealdb.com/images/media/meals/58oia61564916529.jpg",
+      "name": "Corba",
+      "country": "Turkish",
+      "price": 100,
+      "deliverytime": "30 min",
+      "rating": 4,
+      "promoted": true,
+      "foodItems": "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets."
+    },
+    {
+      "id": 53060,
+      "mealImg": "https://www.themealdb.com/images/media/meals/tkxquw1628771028.jpg",
+      "name": "Burek",
+      "country": "Croatian",
+      "price": 100,
+      "deliverytime": "30 min",
+      "rating": 4.5,
+      "promoted": true,
+
+      "foodItems": "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets."
+    },
+    {
+      "id": 53065,
+      "mealImg": "https://www.themealdb.com/images/media/meals/g046bb1663960946.jpg",
+      "name": "Shushi",
+      "country": "Croatian",
+      "price": 100,
+      "deliverytime": "30 min",
+      "promoted": false,
+
+      "rating": 4.5,
+      "foodItems": "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets."
+    },
+    {
+      "id": 52978,
+      "mealImg": "https://www.themealdb.com/images/media/meals/mlchx21564916997.jpg",
+      "name": "Kumpir",
+      "country": "Turkish",
+      "price": 100,
+      "deliverytime": "30 min",
+      "promoted": false,
+
+      "rating": "4.5",
+      "foodItems": "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets."
+    },
+    {
+      "id": 53026,
+      "mealImg": "https://www.themealdb.com/images/media/meals/tkxquw1628771028.jpg",
+      "name": "Tamiya",
+      "country": "Egyptian",
+      "price": 100,
+      "deliverytime": "30 min",
+      "promoted": false,
+
+      "rating": "4.5",
+      "foodItems": "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets."
+    },
+    {
+      "id": 52785,
+      "mealImg": "https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg",
+      "name": "Dal fry",
+      "country": "Indian",
+      "price": 100,
+      "deliverytime": "30 min",
+      "rating": 4.5,
+      "promoted": false,
+
+      "foodItems": "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets."
+    },
+    {
+      "id": 52804,
+      "mealImg": "https://www.themealdb.com/images/media/meals/uuyrrx1487327597.jpg",
+      "name": "Poutine",
+      "country": "Canadian",
+      "price": 100,
+      "deliverytime": "30 min",
+      "rating": 4.5,
+      "promoted": false,
+
+      "foodItems": "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets."
+    },
+    {
+      "id": 52844,
+      "mealImg": "https://www.themealdb.com/images/media/meals/wtsvxx1511296896.jpg",
+      "name": "Lasagne",
+      "country": "Italian",
+      "price": 200,
+      "deliverytime": "30 min",
+      "promoted": false,
+      "rating": 3.5,
+      "foodItems": "Bakery, Desserts, Beverages, Combo, European, Ice Cream, Juices, Waffle, Sweets."
+    }
+  ]
+}
