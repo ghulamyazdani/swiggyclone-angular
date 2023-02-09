@@ -96,13 +96,22 @@ router.post("/signup", (req, res) => {
 // });
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", function (e, isLogged, message) {
-    console.log(e, isLogged, message);
+    // console.log(e, isLogged, message);
     res.send(message);
   })(req, res, next);
 });
 
-router.get("/logout", (req, res) => {
-  req.logout();
+router.get("/logout", (req, res, next) => {
+  req.logOut(function (err) {
+    if (err) {
+      return next(err);
+    }
+    // res.redirect("/");
+    res.send("Logged out");
+  });
+});
+router.get("/", (req, res, next) => {
+  res.send(req.user.username);
 });
 
 module.exports = router;

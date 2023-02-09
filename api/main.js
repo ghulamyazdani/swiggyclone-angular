@@ -3,15 +3,25 @@ const app = express();
 const session = require("express-session");
 const mongoose = require("mongoose");
 const passport = require("passport");
-// passport config
-require("./config/passport.js")(passport);
+
 const cors = require("cors");
-
-const port = process.env.PORT || 4000;
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const port = process.env.PORT || 4000;
+// Db connection
+const db = require("./config/keys").MongoURI;
+mongoose.set("strictQuery", true);
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(function () {
+    console.log("Connected with mongo");
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
 // Express session
 app.use(
   session({
@@ -25,17 +35,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Db connection
-const db = require("./config/keys").MongoURI;
-mongoose.set("strictQuery", true);
-mongoose
-  .connect(db, { useNewUrlParser: true })
-  .then(function () {
-    console.log("Connected with mongo");
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+// passport config
+require("./config/passportlocal.js")(passport);
 
 // Routes
 const indexRouter = require("./routes/index");
