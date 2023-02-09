@@ -1,14 +1,29 @@
 const express = require("express");
 const app = express();
-const fs = require("fs");
+const session = require("express-session");
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
+const passport = require("passport");
+// passport config
+require("./config/passport.js")(passport);
 const cors = require("cors");
+
 const port = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Express session
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+// passporjs init
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Db connection
 const db = require("./config/keys").MongoURI;
@@ -21,6 +36,7 @@ mongoose
   .catch(function (error) {
     console.log(error);
   });
+
 // Routes
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
