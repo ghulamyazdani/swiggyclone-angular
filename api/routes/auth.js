@@ -4,42 +4,9 @@ var router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
-
+var config = require("../config/keys");
 var passport = require("passport");
 var passportJWT = require("passport-jwt");
-
-var ExtractJwt = passportJWT.ExtractJwt;
-var JwtStrategy = passportJWT.Strategy;
-
-// var users = [
-//   {
-//     id: 1,
-//     name: "javier",
-//     password: "password123",
-//   },
-// ];
-
-var jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = "mysecretword";
-
-var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
-  console.log("payload received", jwt_payload);
-  // var user = users[_.findIndex(users, { id: jwt_payload.id })];
-  User.findOne({ id: jwt_payload.id }).then((user) => {
-    console.log(user);
-    if (user) {
-      next(null, user);
-    } else {
-      next(null, false);
-    }
-  });
-});
-
-passport.use(strategy);
-
-// var app = express();
-// app.use(passport.initialize());
 
 router.post("/signup", (req, res) => {
   const data = req.body;
@@ -125,13 +92,20 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", function (req, res) {
+  var searchData = {};
+
   if (req.body.emailorusername && req.body.password) {
     var emailorusername = req.body.emailorusername;
     var password = req.body.password;
   }
   // res.send({ email, password });
-
-  User.findOne({ email: emailorusername }).then((user) => {
+  if (emailorusername.includes("@") && emailorusername.includes(".")) {
+    searchData = { email: emailorusername };
+    var email = emailorusername;
+  } else {
+    searchData = { username: emailorusername };
+  }
+  User.findOne(searchData).then((user) => {
     console.log(user);
 
     if (!user) {
@@ -141,8 +115,9 @@ router.post("/login", function (req, res) {
         if (error) throw error;
         console.log(user);
         if (isMatch) {
+          // let token = jwt.sign(user.toJSON(), config.secret);
           var payload = { id: user.id };
-          var token = jwt.sign(payload, jwtOptions.secretOrKey);
+          var token = jwt.sign(payload, config.secretOrKey);
           res.json({ message: "ok", token: token });
         } else {
           res.status(401).json({ message: "invalid credentials" });

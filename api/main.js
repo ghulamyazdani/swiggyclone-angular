@@ -37,6 +37,7 @@ app.use(passport.session());
 
 // // passport config
 // require("./config/passportlocal.js")(passport);
+require("./config/passportjwt")(passport);
 
 // Routes
 const indexRouter = require("./routes/index");

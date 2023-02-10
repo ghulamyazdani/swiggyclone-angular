@@ -32,9 +32,25 @@ module.exports = function (passport) {
     done(null, user.id);
   });
 
+  // passport.deserializeUser(function (id, done) {
+  //   // User.findById(id, function (err, user) {
+  //   //   done(err, user);
+  //   // });
+  //   User.findOne({ id: id }).then((user) => {
+  //     done(null, user);
+  //   });
+  // });
   passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
-      done(err, user);
-    });
+    try {
+      User.findById(id, function (err, user) {
+        done(err, user);
+      });
+    } catch (err) {
+      console.log(err);
+      done(err, null);
+    }
+    // User.findOne({ id: id }).then((user) => {
+    //   done(null, user);
+    // });
   });
 };
