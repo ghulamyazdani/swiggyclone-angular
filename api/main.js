@@ -35,16 +35,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// passport config
-require("./config/passportlocal.js")(passport);
+// // passport config
+// require("./config/passportlocal.js")(passport);
 
 // Routes
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
+// const usersRouter = require("./routes/users");
 
 app.use("/api/", indexRouter);
-app.use("/api/users", usersRouter);
+// app.use("/api/users", usersRouter);
 app.use("/api/auth", authRouter);
 
 app.listen(port, () => {
