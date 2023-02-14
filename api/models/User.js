@@ -22,6 +22,16 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  urole: {
+    type: String,
+    enum: ["NEW", "STATUS"],
+    default: "NEW",
+    required: true,
+  },
+  verified: {
+    type: Boolean,
+    required: true,
+  },
   password: {
     type: String,
     required: true,

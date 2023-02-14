@@ -7,6 +7,15 @@ var jwt = require("jsonwebtoken");
 var config = require("../config/keys");
 var passport = require("passport");
 var passportJWT = require("passport-jwt");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(config.SENDGRID_API_KEY);
+const msg = {
+  to: "ghulamyazdani12@gmail.com", // Change to your recipient
+  from: "ghulam@posist.com", // Change to your verified sender
+  subject: "Sending with SendGrid is Fun",
+  text: "and easy to do anywhere, even with Node.js",
+  html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+};
 
 router.post("/signup", (req, res) => {
   const data = req.body;
@@ -18,6 +27,7 @@ router.post("/signup", (req, res) => {
     !data.username ||
     !data.phone_number ||
     !data.email ||
+    !data.urole ||
     !data.password ||
     !data.confirm_password
   ) {
@@ -39,6 +49,7 @@ router.post("/signup", (req, res) => {
         last_name: data.last_name,
         username: data.username,
         phone_number: data.phone_number,
+        urole: data.urole,
         email: data.email,
         password: data.password,
         confirm_password: data.confirm_password,
@@ -68,6 +79,8 @@ router.post("/signup", (req, res) => {
             last_name: data.last_name,
             username: data.username,
             phone_number: data.phone_number,
+            urole: data.urole,
+            verified: false,
             email: data.email,
             password: data.password,
           });
@@ -98,10 +111,8 @@ router.post("/login", function (req, res) {
     var emailorusername = req.body.emailorusername;
     var password = req.body.password;
   }
-  // res.send({ email, password });
   if (emailorusername.includes("@") && emailorusername.includes(".")) {
     searchData = { email: emailorusername };
-    var email = emailorusername;
   } else {
     searchData = { username: emailorusername };
   }
@@ -109,7 +120,11 @@ router.post("/login", function (req, res) {
     console.log(user);
 
     if (!user) {
-      res.status(401).json({ message: "no such user found" });
+      res.status(401).json({
+        message: searchData.username
+          ? "No such user with this username found"
+          : "No such user with this email found",
+      });
     } else {
       bcrypt.compare(password, user.password, function (error, isMatch) {
         if (error) throw error;
@@ -118,9 +133,9 @@ router.post("/login", function (req, res) {
           // let token = jwt.sign(user.toJSON(), config.secret);
           var payload = { id: user.id };
           var token = jwt.sign(payload, config.secretOrKey);
-          res.json({ message: "ok", token: token });
+          res.json({ message: "ok", token: token, ...user._doc });
         } else {
-          res.status(401).json({ message: "invalid credentials" });
+          res.status(401).json({ message: "Password is wrong for this user" });
         }
       });
     }
@@ -131,7 +146,64 @@ router.get(
   "/secret",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log("Email sent");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     res.json({ message: "Success!", some: req.user });
+  }
+);
+
+router.get(
+  "/addUser",
+  passport.authenticate("jwt", { session: false }),
+  function (req, res) {
+    const data = req.body;
+    let errors = [];
+    if (
+      !data.first_name ||
+      !data.last_name ||
+      !data.username ||
+      !data.phone_number ||
+      !data.email ||
+      !data.urole ||
+      !data.password
+    ) {
+      errors.push({ msg: "Please enter all fields" });
+    }
+    if (errors) {
+      res.send(JSON.stringify({ errors })).status(400);
+    }
+    {
+      const newUser = new User({
+        first_name: data.first_name,
+        last_name: data.last_name,
+        username: data.username,
+        phone_number: data.phone_number,
+        urole: data.urole,
+        verified: false,
+        email: data.email,
+        password: data.password,
+      });
+      bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(newUser.password, salt, function (err, hash) {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(function (user) {
+              res.send(JSON.stringify(user));
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
+        });
+      });
+    }
   }
 );
 

@@ -35,7 +35,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// // passport config
+// passport config
 // require("./config/passportlocal.js")(passport);
 require("./config/passportjwt")(passport);
 
