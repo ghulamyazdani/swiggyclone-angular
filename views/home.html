@@ -188,9 +188,56 @@
               class="signupForm"
             >
               <input
+                type="text"
+                class="Number_input"
+                name="first_name"
+                ng-model="userData.first_name"
+                ng-required="true"
+                placeholder=" First Name"
+                required
+              />
+              <span
+                class="text-danger"
+                ng-show="signupForm.first_name.$error.required && signupForm.first_name.$touched || signupForm.first_name.$error.required && signupForm.first_name.$dirty"
+                class=""
+              >
+                First name field is required
+              </span>
+              <input
+                type="text"
+                class="Number_input"
+                name="last_name"
+                ng-model="userData.last_name"
+                ng-required="true"
+                placeholder=" Last Name"
+                required
+              />
+              <span
+                class="text-danger"
+                ng-show="signupForm.last_name.$error.required && signupForm.last_name.$touched || signupForm.last_name.$error.required && signupForm.last_name.$dirty"
+                class=""
+              >
+                Last name field is required
+              </span>
+              <input
+                type="text"
+                class="Number_input"
+                name="phone_number"
+                ng-model="userData.phone_number"
+                ng-required="true"
+                placeholder=" Phone Number"
+                required
+              />
+              <span
+                class="text-danger"
+                ng-show="signupForm.phone_number.$error.required && signupForm.phone_number.$touched || signupForm.phone_number.$error.required && signupForm.phone_number.$dirty"
+                class=""
+              >
+                Phone Number field is required
+              </span>
+              <input
                 type="email"
                 class="Number_input"
-                id="inputEmail4"
                 name="email"
                 ng-model="userData.email"
                 ng-required="true"
@@ -269,9 +316,9 @@
               <input
                 type="password"
                 class="Number_input"
-                name="confirmPassword"
+                name="confirm_password"
                 id="inputConfirmPassword4"
-                ng-model="userData.confirmPassword"
+                ng-model="userData.confirm_password"
                 ng-required="true"
                 placeholder="Confirm Password"
                 compare-to="userData.password"
@@ -291,17 +338,17 @@
 
               <span
                 class="text-danger"
-                ng-show="signupForm.confirmPassword.$error.required && signupForm.confirmPassword.$touched "
+                ng-show="signupForm.confirm_password.$error.required && signupForm.confirm_password.$touched "
               >
                 Confirm password is Required</span
               >
               <span
                 class="text-danger"
-                ng-show=" userData.confirmPassword !== userData.password && signupForm.confirmPassword.$touched && signupForm.password.$dirty"
+                ng-show=" userData.confirm_password !== userData.password && signupForm.confirm_password.$touched && signupForm.password.$dirty "
               >
                 Confirm password should be same as password</span
               >
-
+              <span class="text-danger"> {{errormessage}}</span>
               <button id="signup" type="submit" class="login_btn">
                 Sign up
               </button>
